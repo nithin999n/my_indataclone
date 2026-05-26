@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="{% static 'images/logo.png' %}" alt="InDataAI" height="40">
+        </a>
+        
+        <div class="navbar-collapse justify-content-center d-none d-lg-flex">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about/">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/services/">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="/portfolio/">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/events/">Event</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="d-flex align-items-center ms-auto">
+            <button class="btn btn-link text-dark me-2 p-0" onclick="openSearch()" style="font-size: 20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+            <a href="#" class="btn btn-primary rounded-pill px-4 me-3 d-none d-lg-inline-block">Get Quote →</a>
+            <button class="btn btn-link text-dark p-0" onclick="openSidebar()" style="font-size: 24px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div id="searchModal" class="search-modal">
+    <button class="btn-close-search" onclick="closeSearch()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+        </svg>
+    </button>
+    <div class="search-content">
+        <div class="search-box">
+            <input type="text" class="form-control form-control-lg" placeholder="Search Here....." style="border-radius: 50px; padding: 20px 30px; border: none; font-size: 18px;">
+            <button class="btn-search-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0d6efd" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="sidebarMenu" class="sidebar-menu">
+    <div class="sidebar-content">
+        <button class="btn-close-sidebar" onclick="closeSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            </svg>
+        </button>
+        <div class="sidebar-logo mb-4">
+            <img src="{% static 'images/logo.png' %}" alt="InDataAI" height="50">
+        </div>
+        <p class="text-white mb-4">Welcome To InDataAI, Your Trusted Partner In Cutting-Edge Technology Solutions.</p>
+        <div class="sidebar-section mb-4">
+            <h6 class="text-white fw-bold mb-3">Get In Touch</h6>
+            <div class="d-flex align-items-start mb-3">
+                <div class="sidebar-icon me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0d6efd" viewBox="0 0 16 16">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+                    </svg>
+                </div>
+                <div>
+                    <small class="text-white-50 d-block">Call Now</small>
+                    <a href="tel:+919535347167" class="text-white text-decoration-none">+919535347167</a>
+                </div>
+            </div>
+            <div class="d-flex align-items-start mb-3">
+                <div class="sidebar-icon me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0d6efd" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+                    </svg>
+                </div>
+                <div>
+                    <small class="text-white-50 d-block">Quick Email</small>
+                    <a href="mailto:Team@indataai.in" class="text-white text-decoration-none">Team@indataai.in</a>
+                </div>
+            </div>
+            <div class="d-flex align-items-start mb-3">
+                <div class="sidebar-icon me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0d6efd" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>
+                </div>
+                <div>
+                    <small class="text-white-50 d-block">Office Address</small>
+                    <p class="text-white mb-0 small">3rd Floor, Office No. 11, Stellar Mall, Beside JGCC College, Jayanagar, Vidya Nagar, Hubballi, Karnataka 580021</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            <a href="#" class="btn btn-outline-light btn-sm me-2" style="width: 40px; height: 40px; border-radius: 8px;">f</a>
+            <a href="#" class="btn btn-outline-light btn-sm me-2" style="width: 40px; height: 40px; border-radius: 8px;">t</a>
+            <a href="#" class="btn btn-outline-light btn-sm me-2" style="width: 40px; height: 40px; border-radius: 8px;">in</a>
+            <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">ig</a>
+        </div>
+    </div>
+</div>
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+
+<section class="events-hero py-5" style="background: linear-gradient(135deg, #0a1628 0%, #1a2f4d 100%); min-height: 400px; position: relative; overflow: hidden;">
+    
+    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 50%; opacity: 0.3;">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="tech-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <circle cx="50" cy="50" r="3" fill="#0d6efd"/>
+                    <line x1="50" y1="50" x2="100" y2="50" stroke="#0d6efd" stroke-width="1"/>
+                    <line x1="50" y1="50" x2="50" y2="100" stroke="#0d6efd" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#tech-pattern)"/>
+        </svg>
+    </div>
+
+    <div class="container position-relative" style="z-index: 1;">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold text-white mb-3">Event</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-white text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item text-primary" aria-current="page">Event</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-lg-6 text-end">
+                <img src="{% static 'images/about-hero.png' %}" alt="Professional" class="img-fluid" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="events-content py-5">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm event-card">
+                    <img src="{% static 'images/annual-tech-meetup.jpg' %}" class="card-img-top" alt="Annual Tech Meetup" style="height: 250px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Annual Tech Meetup</h5>
+                        <p class="card-text text-muted mb-3">Our Yearly Gathering Showcasing Innovation And Achievements.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-semibold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm event-card">
+                    <img src="{% static 'images/product-launch-event.jpg' %}" class="card-img-top" alt="Product Launch Event" style="height: 250px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Product Launch Event</h5>
+                        <p class="card-text text-muted mb-3">Launching Our Latest Technology And Industry Solutions.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-semibold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm event-card">
+                    <img src="{% static 'images/client networking event.jpg' %}" class="card-img-top" alt="Client Networking Event" style="height: 250px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Client Networking Event</h5>
+                        <p class="card-text text-muted mb-3">Strengthening Partnerships And Showcasing Client Success Stories.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-semibold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm event-card">
+                    <img src="{% static 'images/client networking event-1.jpg' %}" class="card-img-top" alt="Client Networking Event" style="height: 250px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Client Networking Event</h5>
+                        <p class="card-text text-muted mb-3">Strengthening Partnerships And Showcasing Client Success Stories.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-semibold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm event-card">
+                    <img src="{% static 'images/client networking event-2.jpg' %}" class="card-img-top" alt="Client Networking Event" style="height: 250px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Client Networking Event</h5>
+                        <p class="card-text text-muted mb-3">Strengthening Partnerships And Showcasing Client Success Stories.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-semibold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm event-card">
+                    <img src="{% static 'images/team-building-program.jpg' %}" class="card-img-top" alt="Team Building Program" style="height: 250px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">Team Building Program</h5>
+                        <p class="card-text text-muted mb-3">Activities Designed To Boost Team Collaboration And Productivity.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-semibold">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="newsletter-section py-5" style="background: linear-gradient(135deg, #0d6efd 0%, #0052cc 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; left: 50px; top: 50%; transform: translateY(-50%); opacity: 0.1;">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="80" stroke="white" stroke-width="2" stroke-dasharray="5,5"/>
+            <circle cx="100" cy="100" r="60" stroke="white" stroke-width="2" stroke-dasharray="5,5"/>
+            <circle cx="100" cy="100" r="40" stroke="white" stroke-width="2" stroke-dasharray="5,5"/>
+        </svg>
+    </div>
+
+    <div class="container text-center position-relative" style="z-index: 1;">
+        <h2 class="text-white fw-bold mb-4">Subscribe Our newsletter</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter Your Email" style="border-radius: 10px; border: none; padding: 15px 20px;">
+                    <button type="submit" class="btn btn-light btn-lg px-4" style="border-radius: 10px; font-weight: 600; white-space: nowrap;">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer-section py-5" style="background-color: #0a1628; color: #fff;">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <img src="{% static 'images/logo.png' %}" alt="InDataAI" height="40" class="mb-3">
+                <p class="text-light mb-3">Financial planners help people to gain knowledge about</p>
+                <h6 class="text-white mb-3">Follow Us</h6>
+                <div class="d-flex gap-2">
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">f</a>
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">t</a>
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">in</a>
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">m</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Link</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="/services/" class="text-light text-decoration-none">→ Service</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">→ FAQ</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">→ Testimonial</a></li>
+                    <li class="mb-2"><a href="/about/" class="text-light text-decoration-none">→ About Us</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Our Services</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">→ Hosting Solution</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">→ Cyber Security</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">→ Network Analysis</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">→ Data Recovery</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Follow Us</h5>
+                <p class="text-light mb-3">The Latest News, Articles, Sent To Your Inbox Weekly.</p>
+                <form class="d-flex mb-3">
+                    <input type="email" class="form-control" placeholder="Your e-mail" style="border-radius: 8px 0 0 8px;">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 0 8px 8px 0;">→</button>
+                </form>
+                <div class="d-flex gap-2">
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">f</a>
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">t</a>
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">in</a>
+                    <a href="#" class="btn btn-outline-light btn-sm" style="width: 40px; height: 40px; border-radius: 8px;">p</a>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="mb-0 text-light">© InDataAI PVT LTD 2025 | All Rights Reserved</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="#" class="text-light text-decoration-none me-3">Privacy Policy</a>
+                <a href="#" class="text-light text-decoration-none">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.event-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important;
+}
+
+.event-card img {
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover img {
+    transform: scale(1.05);
+}
+</style>
+
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
