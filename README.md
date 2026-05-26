@@ -16,7 +16,7 @@ A Django-based web application clone of InDataAI website with MySQL database int
 ## Tech Stack
 
 - **Backend**: Django 5.2.13
-- **Database**: MySQL
+- **Database**: SQLite3
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 5
 - **Deployment**: Render
 
@@ -39,9 +39,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Configure database in `indata_project/indata_project/settings.py`
-
-5. Run migrations:
+4. Run migrations:
 ```bash
 python indata_project/manage.py migrate
 ```
@@ -58,7 +56,15 @@ python indata_project/manage.py runserver
 
 ## Deployment on Render
 
-This project is configured for deployment on Render with MySQL database.
+This project is configured for deployment on Render with SQLite database.
+
+### Render Configuration:
+- **Build Command**: `./build.sh`
+- **Start Command**: `gunicorn indata_project.indata_project.wsgi:application`
+- **Environment Variables**:
+  - `SECRET_KEY` = (generate a new secret key)
+  - `DEBUG` = False
+  - `ALLOWED_HOSTS` = your-app.onrender.com
 
 ## License
 
