@@ -22,6 +22,8 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Automatically add Render host in production
+if 'RENDER_EXTERNAL_HOSTNAME' in os.environ:
+    ALLOWED_HOSTS.append(os.environ.get('RENDER_EXTERNAL_HOSTNAME'))
 if 'RENDER_HOSTNAME' in os.environ:
     ALLOWED_HOSTS.append(os.environ.get('RENDER_HOSTNAME'))
 
